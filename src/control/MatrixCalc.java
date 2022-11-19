@@ -112,7 +112,10 @@ public class MatrixCalc {
     }
 
     public static double[] calcDeterminant (Matrix matrix) {
-        //Todo: Write algorithm for Laplace expansion
+        /* Todo: Write algorithm to do determinant for n*n matrix.
+         *       Algorithm should be as efficient as possible. Things to keep in mind:
+         *       Leibniz formula, decomposition, laplace expansion
+         */
         return new double[]{0, 0};
     }
 

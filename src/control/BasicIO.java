@@ -59,6 +59,10 @@ public class BasicIO {
         return scannerStr.nextInt();
     }
 
+    /* Todo: Create exception handler that can accept any function as parameters and loop back.
+     *       Currently handled functions are hardcoded in handler block.
+     */
+
     /**
      * Display input prompt and tries to convert user input to an integer array. If the input is wrong,
      * it prompts the user to try again and displays the correct error message.
