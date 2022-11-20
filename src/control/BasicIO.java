@@ -1,6 +1,10 @@
 package control;
 
+import model.MathObjects;
+
 import java.util.Scanner;
+import java.util.concurrent.Callable;
+import java.util.function.Function;
 
 import static control.TypeConversion.*;
 
@@ -99,6 +103,24 @@ public class BasicIO {
                     doubleArray[i] = parseComplexNumber(strArray[i]);
                 }
                 return doubleArray;
+            } catch (Throwable e) {
+                System.out.println(e.getMessage());
+                System.out.println();
+            }
+        }
+    }
+
+    /**
+     * Accepts a function as parameter and tries to execute it. If the function throws an exception,
+     * it prompts the user to try again and displays the correct error message.
+     * @param function      Function to execute
+     * @return              Result of the function
+     * @param <T>           Type of the function
+     */
+    public static <T> T exceptionHandler (Callable<T> function) {
+        while (true) {
+            try {
+                return function.call();
             } catch (Throwable e) {
                 System.out.println(e.getMessage());
                 System.out.println();
