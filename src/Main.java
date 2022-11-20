@@ -34,12 +34,12 @@ public class Main {
             //Input prompt to set matrix dimensions
             if (isUseAnsMatrix() && (getStrArrSize() == 4)) {
                 twoMatrixModeAns();
-                int[] dimBIntArr = tryParsingIntegers(matDimLines, 2);
+                int[] dimBIntArr = exceptionHandler(() -> stringToIntArray(basicInputPromptStr(matDimLines),2));
                 int[] dimAIntArr = {ansMatrix.getColumns(), ansMatrix.getRows()};
                 System.arraycopy(dimAIntArr, 0, dimIntArr, 0, dimAIntArr.length);
                 System.arraycopy(dimBIntArr, 0, dimIntArr, 2, dimBIntArr.length);
             } else if (!(getStrArrSize() == 2 && isUseAnsMatrix())) {
-                dimIntArr = tryParsingIntegers(matDimLines, getStrArrSize());
+                dimIntArr = exceptionHandler(() -> stringToIntArray(basicInputPromptStr(matDimLines),getStrArrSize()));
             }
 
             /*

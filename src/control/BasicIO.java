@@ -1,10 +1,7 @@
 package control;
 
-import model.MathObjects;
-
 import java.util.Scanner;
 import java.util.concurrent.Callable;
-import java.util.function.Function;
 
 import static control.TypeConversion.*;
 
@@ -62,10 +59,6 @@ public class BasicIO {
         Scanner scannerStr = new Scanner(System.in);
         return scannerStr.nextInt();
     }
-
-    /* Todo: Create exception handler that can accept any function as parameters and loop back.
-     *       Currently handled functions are hardcoded in handler block.
-     */
 
     /**
      * Display input prompt and tries to convert user input to an integer array. If the input is wrong,

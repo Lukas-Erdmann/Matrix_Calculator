@@ -5,6 +5,7 @@ import model.MathObjects.Matrix;
 import java.util.Random;
 
 import static control.BasicIO.*;
+import static control.TypeConversion.*;
 import static model.UIStrings.*;
 
 public class MatrixCreate
@@ -19,7 +20,7 @@ public class MatrixCreate
      */
     public static Matrix createRandom (int columns, int rows, boolean isMatrixA) {
         double[][] elements = new double[columns * rows][2];
-        int[] ranIntArr = isMatrixA ? tryParsingIntegers(ranNumALines, 4) : tryParsingIntegers(ranNumBLines, 4);
+        int[] ranIntArr = exceptionHandler(() -> stringToIntArray(isMatrixA ? basicInputPromptStr(ranNumALines) : basicInputPromptStr(ranNumBLines), 4));
 
         for (int i = 0; i < columns; i++) {
             for (int j = 0; j < rows; j++) {
