@@ -8,7 +8,7 @@ import static control.BasicIO.*;
 import static control.TypeConversion.*;
 import static model.UIStrings.*;
 
-public class MatrixCreate
+public abstract class MatrixCreate
 {
     /**
      * Creates an n*m matrix with random numbers between min and max bounds. Min and max are input by user.

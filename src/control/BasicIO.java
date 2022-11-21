@@ -120,4 +120,21 @@ public class BasicIO {
             }
         }
     }
+
+    /**
+     * Accepts a void function as parameter and tries to execute it. If the function throws an exception,
+     * the function is executed again from the beginning and correct error message is displayed.
+     * @param function      Function to execute
+     */
+    public static void exceptionHandler (Runnable function) {
+        while (true) {
+            try {
+                function.run();
+                return;
+            } catch (Throwable e) {
+                System.out.println(e.getMessage());
+                System.out.println();
+            }
+        }
+    }
 }

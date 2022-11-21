@@ -1,8 +1,6 @@
 package model;
 
-import java.util.Arrays;
-
-public class MathObjects {
+public abstract class MathObjects {
 
     public static class Matrix {    //Matrix class
 
@@ -18,7 +16,11 @@ public class MathObjects {
          * @param columns       Integer number of matrix columns
          * @param rows          Integer number of matrix rows
          */
-        public Matrix (double[][] elements, int columns, int rows) {   //constructor of matrix class
+        public Matrix (double[][] elements, int columns, int rows) throws IllegalArgumentException {
+            if ( (elements.length != columns * rows) || (columns < 1) || (rows < 1) ) {
+                throw new IllegalArgumentException("Matrix dimensions don`t match.");
+            }
+
             this.columns = columns;
             this.rows = rows;
 
@@ -50,6 +52,10 @@ public class MathObjects {
 
         public double getElement (int column, int row, int part) {
             return matrix[column][row][part];
+        }
+
+        public void setElement (int column, int row, int part, double value) {
+            matrix[column][row][part] = value;
         }
     }
 
