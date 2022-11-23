@@ -1,5 +1,7 @@
 package view;
 
+import java.util.Arrays;
+
 public class DisplayMath {
 
     /**
@@ -10,7 +12,7 @@ public class DisplayMath {
      * @param title          String of matrix name
      * @param width          int of max elements width
      */
-    public static void displayMatrix (int[][] matrix, String title, int width) {
+    public static void displayMatrix (double[][][] matrix, String title, int width) {
         //Print header
         System.out.println(title);
         for (int i = 0; i < title.length() || i <= matrix.length * width + matrix.length; i++) {
@@ -21,10 +23,10 @@ public class DisplayMath {
         //Print the matrix
         for (int i = 0; i < matrix.length; i++) {
             for (int j = 0; j < matrix[0].length; j++) {
-                for (int k = 0; k <= width - (String.valueOf(matrix[i][j])).length(); k++) {
+                for (int k = 0; k <= width - (Arrays.toString(matrix[i][j])).length(); k++) {
                     System.out.print(" ");
                 }
-                System.out.print(matrix[i][j]);
+                System.out.print(Arrays.toString(matrix[i][j]));
             }
             System.out.println();
         }

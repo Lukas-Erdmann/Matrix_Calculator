@@ -1,5 +1,9 @@
 package control;
 
+import model.MathObjects;
+
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 import java.util.concurrent.Callable;
 
@@ -101,6 +105,14 @@ public class BasicIO {
                 System.out.println();
             }
         }
+    }
+
+    public static String readLineFromFile(File file, int line) throws FileNotFoundException {
+        Scanner sc = new Scanner(file);
+        for (int i = 0; i < line; i++) {
+            sc.nextLine();
+        }
+        return sc.nextLine();
     }
 
     /**

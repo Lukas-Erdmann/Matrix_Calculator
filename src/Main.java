@@ -69,7 +69,6 @@ public class Main {
                 }
 
                 //Get calculated results
-                //Todo: Handle exceptions occurring during calculation
                 switch (getOperationMode()) {
                     case 1 -> resultMatrix = matrixAdd(A, B);
                     case 2 -> resultMatrix = matrixMultiply(A, B);
@@ -78,7 +77,6 @@ public class Main {
                     case 6 -> resultNumber = calcTrace(A);
                     default -> throw new IllegalArgumentException("Operation mode error");
                 }
-                ;
                 ansMatrix = resultMatrix;
             });
 

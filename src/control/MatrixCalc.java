@@ -12,7 +12,7 @@ public class MatrixCalc {
      * @param B         Complex input matrix B
      * @return          Complex output matrix C
      */
-    public static Matrix matrixAdd (Matrix A, Matrix B) {
+    public static Matrix matrixAdd (Matrix A, Matrix B) throws IllegalArgumentException {
 
         int aX = A.getColumns();
         int aY = A.getRows();
@@ -43,7 +43,7 @@ public class MatrixCalc {
      * @param B         Complex input matrix B
      * @return          Complex output matrix C
      */
-    public static Matrix matrixMultiply (Matrix A, Matrix B) {
+    public static Matrix matrixMultiply (Matrix A, Matrix B) throws IllegalArgumentException {
 
         int aX = A.getColumns();
         int aY = A.getRows();
@@ -119,7 +119,7 @@ public class MatrixCalc {
         return new double[]{0, 0};
     }
 
-    public static double[] calcTrace (Matrix matrix) {
+    public static double[] calcTrace (Matrix matrix) throws IllegalArgumentException {
         if (matrix.getColumns() != matrix.getRows()) {
             throw new IllegalArgumentException("Matrix has to be quadratic.");
         }
