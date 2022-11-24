@@ -80,6 +80,20 @@ public class TypeConversion {
     }
 
     /**
+     * Takes a string and splits it into single string elements with custom delimiter.
+     * Elements are stored in string array.
+     * @param argStr        Input string
+     * @param delimiter     Delimiter to split the string
+     * @return              Output string array
+     */
+    public static String[] stringToStrArray(String argStr, String delimiter) {
+        String[] argStrArr;
+        argStrArr = argStr.split(delimiter); //Split input string into single integers with delimiters
+
+        return argStrArr;
+    }
+
+    /**
      * Reads complex number string and parses real and imaginary parts into size-2 int array.
      * Checks for right formatting and if inputs are integers. If one part is zero it can be omitted.
      * Output doesn't contain i anymore.

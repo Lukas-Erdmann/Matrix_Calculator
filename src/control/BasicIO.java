@@ -108,11 +108,15 @@ public class BasicIO {
     }
 
     public static String readLineFromFile(File file, int line) throws FileNotFoundException {
-        Scanner sc = new Scanner(file);
-        for (int i = 0; i < line; i++) {
-            sc.nextLine();
+        try {
+            Scanner sc = new Scanner(file);
+            for (int i = 0; i < line; i++) {
+                sc.nextLine();
+            }
+            return sc.nextLine();
+        } catch (FileNotFoundException e) {
+            throw new FileNotFoundException("File not found");
         }
-        return sc.nextLine();
     }
 
     /**

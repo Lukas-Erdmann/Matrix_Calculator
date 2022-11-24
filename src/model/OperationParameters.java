@@ -7,6 +7,7 @@ import static model.UIStrings.*;
 public class OperationParameters {
     private static boolean generateRanNum = false;
     private static boolean useAnsMatrix = false;
+    private static boolean dataFromFile = false;
     private static int operationMode = 0;
     private static int strArrSize = 0;
 
@@ -57,5 +58,13 @@ public class OperationParameters {
 
     public static void setStrArrSize(int strArrSize) {
         OperationParameters.strArrSize = strArrSize;
+    }
+
+    public static boolean isDataFromFile() {
+        return dataFromFile;
+    }
+
+    public static void setDataFromFile(boolean dataFromFile) {
+        OperationParameters.dataFromFile = dataFromFile;
     }
 }

@@ -4,42 +4,34 @@ public abstract class MathObjects {
 
     public static class Matrix {    //Matrix class
 
-        private int columns;
         private int rows;
+        private int columns;
 
         private double[][][] matrix;
 
         /**
          * Constructor of custom Matrix class. Takes 2-dim double array of complex numbers to construct
-         * 3-dim matrix with size of columns * rows * 2.
+         * 3-dim matrix with size of rows * columns * 2.
          * @param elements      2-dim double array
-         * @param columns       Integer number of matrix columns
-         * @param rows          Integer number of matrix rows
+         * @param rows       Integer number of matrix columns
+         * @param columns          Integer number of matrix rows
          */
-        public Matrix (double[][] elements, int columns, int rows) throws IllegalArgumentException {
-            if ( (elements.length != columns * rows) || (columns < 1) || (rows < 1) ) {
+        public Matrix (double[][] elements, int rows, int columns) throws IllegalArgumentException {
+            if ( (elements.length != rows * columns) || (rows < 1) || (columns < 1) ) {
                 throw new IllegalArgumentException("Matrix dimensions don`t match.");
             }
 
-            this.columns = columns;
             this.rows = rows;
+            this.columns = columns;
 
-            this.matrix = new double[columns][rows][2];
+            this.matrix = new double[rows][columns][2];
 
-            for (int i = 0; i < columns; i++) {
-                for (int j = 0; j < rows; j++) {
+            for (int i = 0; i < rows; i++) {
+                for (int j = 0; j < columns; j++) {
                     this.matrix[i][j][0] = elements[i * columns + j][0];
                     this.matrix[i][j][1] = elements[i * columns + j][1];
                 }
             }
-        }
-
-        public int getColumns() {
-            return columns;
-        }
-
-        public void setColumns(int columns) {
-            this.columns = columns;
         }
 
         public int getRows() {
@@ -50,12 +42,20 @@ public abstract class MathObjects {
             this.rows = rows;
         }
 
-        public double getElement (int column, int row, int part) {
-            return matrix[column][row][part];
+        public int getColumns() {
+            return columns;
         }
 
-        public void setElement (int column, int row, int part, double value) {
-            matrix[column][row][part] = value;
+        public void setColumns(int columns) {
+            this.columns = columns;
+        }
+
+        public double getElement (int row, int column, int part) {
+            return matrix[row][column][part];
+        }
+
+        public void setElement (int row, int column, int part, double value) {
+            matrix[row][column][part] = value;
         }
     }
 

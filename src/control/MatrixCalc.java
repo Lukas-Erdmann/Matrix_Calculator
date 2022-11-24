@@ -14,10 +14,10 @@ public class MatrixCalc {
      */
     public static Matrix matrixAdd (Matrix A, Matrix B) throws IllegalArgumentException {
 
-        int aX = A.getColumns();
-        int aY = A.getRows();
-        int bX = B.getColumns();
-        int bY = B.getRows();
+        int aX = A.getRows();
+        int aY = A.getColumns();
+        int bX = B.getRows();
+        int bY = B.getColumns();
 
         if (aY != bY | aX != bX) {
             throw new IllegalArgumentException("Matrix dimensions don`t match.");
@@ -29,8 +29,8 @@ public class MatrixCalc {
 
         for (int i = 0; i < aX; i++) { // aX
             for (int j = 0; j < bY; j++) { // bY
-                elementsC[i * cX + j][0] = A.getElement(i, j, 0) + B.getElement(i, j, 0);
-                elementsC[i * cX + j][1] = A.getElement(i, j, 1) + B.getElement(i, j, 1);
+                elementsC[i * cY + j][0] = A.getElement(i, j, 0) + B.getElement(i, j, 0);
+                elementsC[i * cY + j][1] = A.getElement(i, j, 1) + B.getElement(i, j, 1);
             }
         }
 
@@ -45,29 +45,29 @@ public class MatrixCalc {
      */
     public static Matrix matrixMultiply (Matrix A, Matrix B) throws IllegalArgumentException {
 
-        int aX = A.getColumns();
         int aY = A.getRows();
-        int bX = B.getColumns();
+        int aX = A.getColumns();
         int bY = B.getRows();
+        int bX = B.getColumns();
 
-        if (aY != bX) {
-            throw new IllegalArgumentException("A:Rows: " + aY + " did not match B:Columns " + bX + ".");
+        if (aX != bY) {
+            throw new IllegalArgumentException("A:Columns: " + aX + " did not match B:Rows " + bY + ".");
         }
 
-        int cX = aX, cY = aY;
+        int cY = aY, cX = bX;
         double[][] elementsC = new double[cX * cY][2];
         initializeWithZero(elementsC);
 
-        for (int i = 0; i < aX; i++) { // aX
-            for (int j = 0; j < bY; j++) { // bY
-                for (int k = 0; k < aY; k++) { // sum of single element multiplication
+        for (int i = 0; i < cY; i++) { // aX
+            for (int j = 0; j < cX; j++) { // bY
+                for (int k = 0; k < aX; k++) { // sum of single element multiplication
                     elementsC[i * cX + j][0] += A.getElement(i, k, 0) * B.getElement(k, j, 0) - A.getElement(i, k, 1) * B.getElement(k, j, 1);
                     elementsC[i * cX + j][1] += A.getElement(i, k, 0) * B.getElement(k, j, 1) + A.getElement(i, k, 1) * B.getElement(k, j, 0);
                 }
             }
         }
 
-        return new Matrix(elementsC, cX, cY);
+        return new Matrix(elementsC, cY, cX);
     }
 
     /**
@@ -81,11 +81,11 @@ public class MatrixCalc {
 
         for (int i = 0; i < matrix.getColumns(); i++) {
             for (int j = 0; j < matrix.getRows(); j++) {
-                elements[i * matrix.getColumns() + j][0] = matrix.getElement(j, i, 0);
-                elements[i * matrix.getColumns() + j][1] = matrix.getElement(j, i, 1);
+                elements[i * matrix.getRows() + j][0] = matrix.getElement(j, i, 0);
+                elements[i * matrix.getRows() + j][1] = matrix.getElement(j, i, 1);
             }
         }
-        return new Matrix(elements, matrix.getRows(), matrix.getColumns());
+        return new Matrix(elements, matrix.getColumns(), matrix.getRows());
     }
 
     /**
@@ -95,12 +95,12 @@ public class MatrixCalc {
      * @return              Complex output matrix
      */
     public static Matrix conjugateMatrix(Matrix argMatrix) {
-        double[][] elements = new double[argMatrix.getRows() * argMatrix.getColumns()][2];
+        double[][] elements = new double[argMatrix.getColumns() * argMatrix.getRows()][2];
         initializeWithZero(elements);
         Matrix matrix = transposeMatrix(argMatrix);
 
-        for (int i = 0; i < matrix.getColumns(); i++) {
-            for (int j = 0; j < matrix.getRows(); j++) {
+        for (int i = 0; i < matrix.getRows(); i++) {
+            for (int j = 0; j < matrix.getColumns(); j++) {
                 elements[i * matrix.getColumns() + j][0] = matrix.getElement(i, j, 0);
                 elements[i * matrix.getColumns() + j][1] = matrix.getElement(i, j, 1);
                 if (i != j) {
@@ -108,7 +108,7 @@ public class MatrixCalc {
                 }
             }
         }
-        return new Matrix(elements, matrix.getColumns(), matrix.getRows());
+        return new Matrix(elements, matrix.getRows(), matrix.getColumns());
     }
 
     public static double[] calcDeterminant (Matrix matrix) {
@@ -120,12 +120,12 @@ public class MatrixCalc {
     }
 
     public static double[] calcTrace (Matrix matrix) throws IllegalArgumentException {
-        if (matrix.getColumns() != matrix.getRows()) {
+        if (matrix.getRows() != matrix.getColumns()) {
             throw new IllegalArgumentException("Matrix has to be quadratic.");
         }
 
         double[] trace = {0, 0};
-        for (int i = 0; i < matrix.getColumns(); i++) {
+        for (int i = 0; i < matrix.getRows(); i++) {
             trace[0] += matrix.getElement(i, i, 0);
             trace[1] += matrix.getElement(i, i, 1);
         }
@@ -159,15 +159,15 @@ public class MatrixCalc {
      * @return              2-dim Complex string matrix
      */
     public static String[][] makeComplexStringMatrix (Matrix matrix) {
-        String[][] complexMatrix = new String[matrix.getColumns()][matrix.getRows()];
-        for (int i = 0; i < matrix.getColumns(); i++) {
-            for (int j = 0; j < matrix.getRows(); j++) {
+        String[][] complexMatrix = new String[matrix.getRows()][matrix.getColumns()];
+        for (int i = 0; i < matrix.getRows(); i++) {
+            for (int j = 0; j < matrix.getColumns(); j++) {
                 complexMatrix[i][j] = null;
             }
         }
 
-        for (int i = 0; i < matrix.getColumns(); i++) {
-            for (int j = 0; j < matrix.getRows(); j++) {
+        for (int i = 0; i < matrix.getRows(); i++) {
+            for (int j = 0; j < matrix.getColumns(); j++) {
                 double[] intArray = {matrix.getElement(i, j, 0), matrix.getElement(i, j, 1)};
                 complexMatrix[i][j] = doubleArrayToComplexString(intArray);
             }

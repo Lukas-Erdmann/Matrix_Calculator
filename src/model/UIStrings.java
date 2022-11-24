@@ -4,6 +4,7 @@ public class UIStrings {
 
     public static String strUseAns = " ";
     public static String strRanNum = " ";
+    public static String strDataFromFile = " ";
     public static String[] TITLE_OVERHEAD_LINE = {"0", "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"};
 
     //-----------------
@@ -18,7 +19,9 @@ public class UIStrings {
     public static String[] MAIN_MENU_LINE_06 = {"6", "4. Conjugate Matrix"};
     public static String[] MAIN_MENU_LINE_07 = {"7", "5. Form Determinant"};
     public static String[] MAIN_MENU_LINE_08 = {"8", "6. Calculate Trace"};
-    public static String[] MAIN_MENU_LINE_09 = {"9", "7. ---"};
+    public static String[] MAIN_MENU_LINE_09A = {"9", "7. ["};
+    public static String[] MAIN_MENU_LINE_09B = {"9", strDataFromFile};
+    public static String[] MAIN_MENU_LINE_09C = {"9", "] Get data from file"};
     public static String[] MAIN_MENU_LINE_10A = {"10", "8. ["};
     public static String[] MAIN_MENU_LINE_10B = {"10", strUseAns}; // index 11
     public static String[] MAIN_MENU_LINE_10C = {"10", "] Use previous solution"};
@@ -27,7 +30,7 @@ public class UIStrings {
     public static String[] MAIN_MENU_LINE_11C = {"11", "] Generate random elements"};
     public static String[] MAIN_MENU_LINE_12 = {"12", "0. Exit application"};
 
-    public static String[][] mainMenuLines = {TITLE_OVERHEAD_LINE, MAIN_MENU_LINE_01, MAIN_MENU_LINE_02, MAIN_MENU_LINE_03, MAIN_MENU_LINE_04, MAIN_MENU_LINE_05, MAIN_MENU_LINE_06, MAIN_MENU_LINE_07, MAIN_MENU_LINE_08, MAIN_MENU_LINE_09, MAIN_MENU_LINE_10A, MAIN_MENU_LINE_10B, MAIN_MENU_LINE_10C, MAIN_MENU_LINE_11A, MAIN_MENU_LINE_11B, MAIN_MENU_LINE_11C, MAIN_MENU_LINE_12};
+    public static String[][] mainMenuLines = {TITLE_OVERHEAD_LINE, MAIN_MENU_LINE_01, MAIN_MENU_LINE_02, MAIN_MENU_LINE_03, MAIN_MENU_LINE_04, MAIN_MENU_LINE_05, MAIN_MENU_LINE_06, MAIN_MENU_LINE_07, MAIN_MENU_LINE_08, MAIN_MENU_LINE_09A, MAIN_MENU_LINE_09B, MAIN_MENU_LINE_09C, MAIN_MENU_LINE_10A, MAIN_MENU_LINE_10B, MAIN_MENU_LINE_10C, MAIN_MENU_LINE_11A, MAIN_MENU_LINE_11B, MAIN_MENU_LINE_11C, MAIN_MENU_LINE_12};
 
     //-------------------------------
     // Input matrix dimensions lines

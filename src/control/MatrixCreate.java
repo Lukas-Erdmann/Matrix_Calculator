@@ -2,6 +2,8 @@ package control;
 
 import model.MathObjects.Matrix;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Random;
 
 import static control.BasicIO.*;
@@ -24,8 +26,8 @@ public abstract class MatrixCreate
 
         for (int i = 0; i < columns; i++) {
             for (int j = 0; j < rows; j++) {
-                elements[i * columns + j][0] = generateRandomNumber(ranIntArr[0], ranIntArr[1]);
-                elements[i * columns + j][1] = generateRandomNumber(ranIntArr[2], ranIntArr[3]);
+                elements[i * rows + j][0] = generateRandomNumber(ranIntArr[0], ranIntArr[1]);
+                elements[i * rows + j][1] = generateRandomNumber(ranIntArr[2], ranIntArr[3]);
             }
         }
         return new Matrix(elements, columns, rows);
@@ -51,11 +53,37 @@ public abstract class MatrixCreate
             double[][] elementArray = tryParsingComplex(manNumLines, rows);
 
             for (int j = 0; j < rows; j++) {
-                elements[i * columns + j] = elementArray[j];
+                elements[i * rows + j] = elementArray[j];
             }
         }
 
         return new Matrix(elements, columns, rows);
+    }
+
+    /**
+     * Creates an n*m matrix with numbers from a specific line from a file.
+     * File must be in the same directory as the program.
+     * @param file                      File object
+     * @param line                      Integer line number
+     * @return                          Result Matrix
+     * @throws FileNotFoundException    If file is not found
+     */
+    public static Matrix createFromFile (File file, int line) throws FileNotFoundException {
+        String lineStr = readLineFromFile(file, line - 1);
+        String[] strArr = stringToStrArray(lineStr, ";");
+        int[] dimArr = stringToIntArray(strArr[0], 2);
+
+        double[][] elements = new double[dimArr[1] * dimArr[0]][2];
+        initializeWithZero(elements);
+
+        for (int i = 0; i < dimArr[1]; i++) {
+            String[] rowArr = stringToStrArray(strArr[i + 1], dimArr[0]);
+            for (int j = 0; j < dimArr[0]; j++) {
+                elements[i * dimArr[0] + j] = parseComplexNumber(rowArr[j]);
+            }
+        }
+
+        return new Matrix(elements, dimArr[1], dimArr[0]);
     }
 
     /**

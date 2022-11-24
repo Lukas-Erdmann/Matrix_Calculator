@@ -54,6 +54,10 @@ public class DisplayUI {
                     oneMatrixMode();
                     stayInMenu = false;
                     break;
+                case 7:
+                    MAIN_MENU_LINE_09B[1] = toggleOption(isDataFromFile());
+                    setDataFromFile(!isDataFromFile());
+                    break;
                 case 8:
                     MAIN_MENU_LINE_10B[1] = toggleOption(isUseAnsMatrix());
                     setUseAnsMatrix(!isUseAnsMatrix());
