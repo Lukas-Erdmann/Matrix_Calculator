@@ -57,6 +57,10 @@ public class DisplayUI {
                 case 7:
                     MAIN_MENU_LINE_09B[1] = toggleOption(isDataFromFile());
                     setDataFromFile(!isDataFromFile());
+                    if (isGenerateRanNum()) {
+                        setGenerateRanNum(false);
+                        MAIN_MENU_LINE_11B[1] = " ";
+                    }
                     break;
                 case 8:
                     MAIN_MENU_LINE_10B[1] = toggleOption(isUseAnsMatrix());
@@ -65,6 +69,10 @@ public class DisplayUI {
                 case 9:
                     MAIN_MENU_LINE_11B[1] = toggleOption(isGenerateRanNum());
                     setGenerateRanNum(!isGenerateRanNum());
+                    if (isDataFromFile()) {
+                        setDataFromFile(false);
+                        MAIN_MENU_LINE_09B[1] = " ";
+                    }
                     break;
                 case 0:
                     System.exit(0);
